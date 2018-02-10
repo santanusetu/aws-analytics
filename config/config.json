@@ -1,0 +1,5 @@
+{"memoryThreshold": 7,
+  "cpuThreshold": 10,
+  "accountSid":"Your twilio account sid",
+  "authToken":"Your twilio account auth token"
+}

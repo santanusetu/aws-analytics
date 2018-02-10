@@ -1,0 +1,219 @@
+<!DOCTYPE Html>
+<html>
+<head>
+    <title>AWS-Console</title>
+    <meta charset="utf-8">
+    <meta name="view" content="width=device-height, initial-scale=1">
+    <!--<link rel="shortcut icon" href="/images/logo.ico">-->
+
+    <script src="https://sdk.amazonaws.com/js/aws-sdk-2.0.4.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+  <!--  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>-->
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+
+    <script src="/js/awsconsole.js"></script>
+    <link rel="stylesheet" href="css/awsconsole.css">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+
+    <!-- Polymer Elements -->
+    <script src="/components/platform/platform.js"></script>
+    <link rel="import" href="/components/polymer/polymer.html">
+   <!-- <link rel="import" href="/components/core-toolbar/core-toolbar.html">
+    <link rel="import" href="/components/paper-button/paper-button.html">-->
+
+    <link rel="import" href="/components/paper-progress/paper-progress.html">
+
+
+    <!--<link rel="import" href="/components/paper-dialog/paper-dialog.html">
+    <link rel="import" href="/components/paper-dialog/paper-dialog-transition.html">
+    <link rel="import" href="/components/paper-input/paper-input.html">
+    <link rel="import" href="/components/paper-toast/paper-toast.html">
+    <link rel="import" href="/components/core-transition/core-transition.html">-->
+
+
+    <!--<link rel="import" href="/components/paper-tabs/paper-tab.html">
+    <link rel="import" href="/components/paper-tabs/paper-tabs.html">
+    <link rel="import" href="/components/paper-radio-button/paper-radio-button.html">
+    <link rel="import" href="/components/paper-radio-group/paper-radio-group.html">
+    <link rel="import" href="/components/core-icon-button/core-icon-button.html">-->
+
+</head>
+
+
+
+
+<body>
+
+<<<<<<< HEAD
+=======
+    &lt;!&ndash;<paper-button raisedButton id="optionButton" label="Options"
+                  onclick="window.Dashboard.ToggleDialog('optionDialog')"></paper-button>&ndash;&gt;
+
+    &lt;!&ndash;<paper-button raisedButton id="plotButton" label="Pull Metrics"
+                  onclick="window.PCW.PullMetrics()"></paper-button>&ndash;&gt;
+
+</core-toolbar>-->
+
+<!--<div class="row">
+    <div class="col-md-6" style="background-color: #FF9999">Left</div>
+    <div class="col-md-6" style="background-color: #00CC99">Right</div>
+    <div class="col-md-6" style="background-color: #00CC99">ULA</div>
+    <div class="col-md-6" style="background-color: #00CC99">Right</div>
+</div>-->
+>>>>>>> e7f412975e2576b02e0fbeaadbb3eb99b4705294
+
+<div id='plot_area'>
+
+</div>
+
+
+<!-- Toasts -->
+<!--<paper-toast id="toastMessage" duration="7000"></paper-toast>-->
+
+
+
+<!-- Dialogs -->
+<!--<paper-dialog id='loginDialog' transition="paper-dialog-transition-bottom" autoCloseDisabled='true'
+              heading="Amazon Web Services Login">
+
+    <p> Please enter your AWS credentials.</p>
+    <paper-input id="login1" label="Access Key ID" floatingLabel='true' required="true"></paper-input>
+    <br>
+    <paper-input id="login2" label="Secret Access Key" floatingLabel='true' required="true"
+                 type="password"></paper-input>
+    <br>
+    <paper-input id="login3" label="Region" floatingLabel='true' required="true"></paper-input>
+
+    <paper-button raisedButton dismissive label="Cancel"></paper-button>
+    &lt;!&ndash;<paper-button raisedButton affirmative label="Login" onclick="window.PCW.AWSLogin()"></paper-button>&ndash;&gt;
+    <paper-button raisedButton affirmative label="Login" onclick="window.PCW.AWSLoginPullData()"></paper-button>
+</paper-dialog>-->
+
+
+<div style="text-align: center;background-color: black;color: white">
+    <h1>AWS METRICS</h1>
+</div>
+<div style="background-color: cyan;text-align: center;margin-top: 40px;margin-left: 80px;margin-right: 80px;padding: 40px"
+     id="mainhead" >
+        <p><label>Access Key ID :</label> <input type="password" id="login1" required="true"></p>
+
+        <p><label>Secret Access Key :</label><input type="password" id="login2"  required="true"></p>
+
+        <p><label>Region :</label><input type="text" id="login3" required="true"></p>
+
+        <input type="button" value="login" onclick="myValue()">
+</div>
+
+
+
+<!--
+<paper-dialog id='optionDialog' transition="paper-dialog-transition-bottom" autoCloseDisabled='true'>
+
+   <paper-tabs id="optionTabs" selected="0">
+       <paper-tab> Timeframe</paper-tab>
+       <paper-tab> Target Filter</paper-tab>
+       <paper-tab> Metrics</paper-tab>
+   </paper-tabs>
+
+
+ <div id="optionDialog_body">
+      &lt;!&ndash; <div id="option_0" class="slides">
+           <p>Please specify the timespan you wish to examine. You may view data from as far back as two weeks ago.</p>
+           <paper-input id="timespan" type="number" label="Timespan" floatingLabel='true'
+                        value="3"></paper-input>
+
+           <paper-radio-group id="timespan_radio" selected="timespan_days">
+               <paper-radio-button name="timespan_minutes" label="Minutes"></paper-radio-button>
+               <paper-radio-button name="timespan_hours" label="Hours"></paper-radio-button>
+               <paper-radio-button name="timespan_days" label="Days"></paper-radio-button>
+           </paper-radio-group>
+
+           <br> <br>
+
+           <p>Please specify the sampling resolution. This determines how frequently data is averaged when
+               gathered. Please note that Amazon only offers resolution finer than five minutes to clients who pay an
+               added premium for this service.</p>
+           <paper-input id="resolution" type="number" label="Resolution" floatingLabel='true'
+                        value="5"></paper-input>
+
+           <paper-radio-group id="resolution_radio" selected="resolution_minutes">
+               <paper-radio-button name="resolution_minutes" label="Minutes"></paper-radio-button>
+               <paper-radio-button name="resolution_hours" label="Hours"></paper-radio-button>
+               <paper-radio-button name="resolution_days" label="Days"></paper-radio-button>
+           </paper-radio-group>
+
+       </div>&ndash;&gt;
+
+
+       &lt;!&ndash;<div id="option_1" class="slides">
+           <p> Please specify the data sources you wish to examine. </p>
+
+           Filter by:
+           <paper-radio-group id="filter_type" selected="filter_instance">
+               <paper-radio-button name="filter_instance" label="Instance ID"></paper-radio-button>
+               <paper-radio-button name="filter_tag" label="Tag Name"></paper-radio-button>
+           </paper-radio-group>
+
+           <br>
+
+           <paper-button raisedButton id="filterAll" label="Select All"
+                         onclick="window.Dashboard.SelectAll('filterSelector')"></paper-button>
+           <paper-button raisedButton id="filterNone" label="Select None"
+                         onclick="window.Dashboard.SelectNone('filterSelector')"></paper-button>
+
+           <br>
+
+           <core-selector id="filterSelector" multi='true'>
+           </core-selector>
+
+       </div>&ndash;&gt;
+
+
+
+      &lt;!&ndash; <div id="option_2" class="slides">
+           <p> Please specify the metrics you wish to display. </p>
+
+           <paper-button raisedButton id="filterAll" label="Select All"
+                         onclick="window.Dashboard.SelectAll('metricSelector')"></paper-button>
+           <paper-button raisedButton id="filterNone" label="Select None"
+                         onclick="window.Dashboard.SelectNone('metricSelector')"></paper-button>
+
+           <br>
+
+           <core-selector id="metricSelector" multi='true'>
+               <div class="filter" id="CPUUtilization"> CPU Utilization</div>
+               <div class="filter" id="DiskReadOps"> Disk Read Operations</div>
+               <div class="filter" id="DiskWriteOps"> Disk Write Operations</div>
+               <div class="filter" id="DiskReadBytes"> Disk Read Bytes</div>
+               <div class="filter" id="DiskWriteBytes"> Disk Write Bytes</div>
+               <div class="filter" id="NetworkIn"> Network In</div>
+               <div class="filter" id="NetworkOut"> Network Out</div>
+           </core-selector>
+       </div>&ndash;&gt;
+
+       &lt;!&ndash; End of Body Div &ndash;&gt;
+   </div>
+   <paper-button raisedButton affirmative label="Close"></paper-button>
+
+</paper-dialog>-->
+
+
+<script>
+  //  window.Dashboard.InitializeEvents();
+
+
+  function myValue() {
+      var key = document.getElementById("login1").value;
+      var secret = document.getElementById("login2").value;
+      var region = document.getElementById("login3").value;
+      console.log(key,secret,region);
+
+     // var message_index = "";
+      //message_index += key+","+secret+","+region;
+      window.PCW.AWSLoginPullData();
+  }
+</script>
+</body>
+</html>

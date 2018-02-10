@@ -1,0 +1,15 @@
+{
+  "name": "AWS EC2 Monitoring",
+  "description": "Data visualization tool for AWS.  Metrics are pulled from AWS API and plotted using the HighCharts JavaScript library.",
+  "contributors": ["Abdul Malik <malk.abdul@gmail.com>","Santanu Chakraborty <santanu.setu@gmail.com>", "Noman Khan <nomaanhaikhan@gmail.com>", "Mohd Zeeshan Shaikh <mohdzeeshanshaikh@gmail.com>", "Dipanjan Mantri <dipanjanmantri018@gmail.com>"],
+  "version": "0.9.0",
+  "keywords": ["Amazon", "AWS", "data visualization", "HighCharts", "CloudWatch", "dashboard"],
+  "homepage": "",
+  "license": "MIT",
+  "dependencies":{
+    "aws-sdk": "2.0.x",
+    "key-forge": "0.1.x",
+    "node-static": "0.7.x",
+    "twilio": "*"
+  }
+}
